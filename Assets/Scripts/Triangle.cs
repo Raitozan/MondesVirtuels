@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeshCreator : MonoBehaviour {
+public class Triangle : MonoBehaviour {
 	
 	public Material mat;
 
