@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour {
 	
-	public int cote;
+	public int taille;
 	public Material mat;
 
 	// Use this for initialization
@@ -13,71 +13,41 @@ public class Cube : MonoBehaviour {
 		gameObject.AddComponent<MeshRenderer> ();
 
 		Vector3[] vertices = new Vector3[8];
-		int[] triangles = new int[36];
 
-		vertices [0] = new Vector3 (transform.position.x - cote / 2, transform.position.y + cote / 2, transform.position.z - cote / 2);
-		vertices [1] = new Vector3 (transform.position.x + cote / 2, transform.position.y + cote / 2, transform.position.z - cote / 2);
-		vertices [2] = new Vector3 (transform.position.x + cote / 2, transform.position.y - cote / 2, transform.position.z - cote / 2);
-		vertices [3] = new Vector3 (transform.position.x - cote / 2, transform.position.y - cote / 2, transform.position.z - cote / 2);
-		vertices [4] = new Vector3 (transform.position.x + cote / 2, transform.position.y + cote / 2, transform.position.z + cote / 2);
-		vertices [5] = new Vector3 (transform.position.x - cote / 2, transform.position.y + cote / 2, transform.position.z + cote / 2);
-		vertices [6] = new Vector3 (transform.position.x - cote / 2, transform.position.y - cote / 2, transform.position.z + cote / 2);
-		vertices [7] = new Vector3 (transform.position.x + cote / 2, transform.position.y - cote / 2, transform.position.z + cote / 2);
+		vertices [0] = new Vector3 (-0.5f, +0.5f, -0.5f);
+		vertices [1] = new Vector3 (+0.5f, +0.5f, -0.5f);
+		vertices [2] = new Vector3 (+0.5f, -0.5f, -0.5f);
+		vertices [3] = new Vector3 (-0.5f, -0.5f, -0.5f);
+		vertices [4] = new Vector3 (+0.5f, +0.5f, +0.5f);
+		vertices [5] = new Vector3 (-0.5f, +0.5f, +0.5f);
+		vertices [6] = new Vector3 (-0.5f, -0.5f, +0.5f);
+		vertices [7] = new Vector3 (+0.5f, -0.5f, +0.5f);
 
-		triangles [0] = 0;
-		triangles [1] = 1;
-		triangles [2] = 2;
-
-		triangles [3] = 0;
-		triangles [4] = 2;
-		triangles [5] = 3;
-
-		triangles [6] = 1;
-		triangles [7] = 4;
-		triangles [8] = 7;
-
-		triangles [9] = 1;
-		triangles [10] = 7;
-		triangles [11] = 2;
-
-		triangles [12] = 4;
-		triangles [13] = 5;
-		triangles [14] = 6;
-
-		triangles [15] = 4;
-		triangles [16] = 6;
-		triangles [17] = 7;
-
-		triangles [18] = 5;
-		triangles [19] = 0;
-		triangles [20] = 3;
-
-		triangles [21] = 5;
-		triangles [22] = 3;
-		triangles [23] = 6;
-
-		triangles [24] = 5;
-		triangles [25] = 4;
-		triangles [26] = 1;
-
-		triangles [27] = 5;
-		triangles [28] = 1;
-		triangles [29] = 0;
-
-		triangles [30] = 3;
-		triangles [31] = 2;
-		triangles [32] = 7;
-
-		triangles [33] = 3;
-		triangles [34] = 7;
-		triangles [35] = 6;
+		int[] triangles = { 0, 1, 2,
+							0, 2, 3,
+							1, 4, 7,
+							1, 7, 2,
+							4, 5, 6,
+							4, 6, 7,
+							5, 0, 3,
+							5, 3, 6,
+							5, 4, 1,
+							5, 1, 0,
+							3, 2, 7,
+							3, 7, 6 };
 
 		Mesh msh = new Mesh ();
 
 		msh.vertices = vertices;
 		msh.triangles = triangles;
+		msh.RecalculateNormals ();
 
+		gameObject.transform.localScale = new Vector3(taille, taille, taille);
 		gameObject.GetComponent<MeshFilter>().mesh = msh;
 		gameObject.GetComponent<MeshRenderer> ().material = mat;
+	}
+
+	void Update() {
+		gameObject.transform.localScale = new Vector3(taille, taille, taille);
 	}
 }

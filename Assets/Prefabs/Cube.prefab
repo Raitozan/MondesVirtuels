@@ -51,5 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83454ef627d553b49a1dca15554b9883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cote: 2
-  mat: {fileID: 2100000, guid: 4d4a803b11ab95a41adc48bc4320a2e5, type: 2}
+  taille: 1
+  mat: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
