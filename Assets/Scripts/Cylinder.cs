@@ -9,7 +9,10 @@ public class Cylinder : MonoBehaviour {
 	public float height;
 	public Material mat;
 
+	int lastMeridiansNb;
+
 	void Start () {
+		lastMeridiansNb = meridiansNb;
 		gameObject.AddComponent<MeshFilter> ();
 		gameObject.AddComponent<MeshRenderer> ();
 
@@ -17,7 +20,9 @@ public class Cylinder : MonoBehaviour {
 	}
 
 	void Update() {
-		createCylinderMesh ();
+		if(meridiansNb != lastMeridiansNb)
+			createCylinderMesh ();
+		lastMeridiansNb = meridiansNb;
 		gameObject.transform.localScale = new Vector3(radius, height, radius);
 	}
 
