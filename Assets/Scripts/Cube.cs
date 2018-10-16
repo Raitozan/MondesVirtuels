@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Cube : MonoBehaviour {
-	
+
+	[Range(1, 100)]
 	public float size;
 	public Material mat;
 

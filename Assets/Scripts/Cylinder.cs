@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Cylinder : MonoBehaviour {
 
+	[Range(3, 100)]
 	public int meridiansNb;
 	public float radius;
 	public float height;
@@ -38,45 +39,37 @@ public class Cylinder : MonoBehaviour {
 			vertices [meridiansNb * 2 + 1] = new Vector3 (0.0f, -0.5f, 0.0f);
 
 			int[] triangles = new int[meridiansNb * 12];
+			int t=0;
 			for (int i = 0; i < meridiansNb; i++) {
-				int A = i;
-				int B = i + meridiansNb;
-				int C, D;
-				if (i != meridiansNb - 1) {
-					C = i + 1;
-					D = i + meridiansNb + 1;
-				} else {
-					C = 0;
-					D = meridiansNb;
-				}
-				triangles [i * 6] = B;
-				triangles [i * 6 + 1] = A;
-				triangles [i * 6 + 2] = C;
+				//faces
+				if (i < meridiansNb - 1) {
+					triangles [t++] = i;
+					triangles [t++] = i + meridiansNb;
+					triangles [t++] = i + 1;
 
-				triangles [i * 6 + 3] = B;
-				triangles [i * 6 + 4] = C;
-				triangles [i * 6 + 5] = D;
+					triangles [t++] = i + 1;
+					triangles [t++] = i + meridiansNb;
+					triangles [t++] = i + meridiansNb + 1;
+				} else {
+					triangles [t++] = i;
+					triangles [t++] = i + meridiansNb;
+					triangles [t++] = i - (meridiansNb - 1);
+
+					triangles [t++] = i - (meridiansNb - 1);
+					triangles [t++] = i + meridiansNb;
+					triangles [t++] = i + 1;
+				}
+
 			}
 			for (int i = 0; i < meridiansNb * 2; i++) {
-				int A, B, C;
+				//couvercles
+				int A=i;
+				int B, C;
+
 				if (i < meridiansNb) {
-					A = i;
-					C = meridiansNb*2;
-					if (i != meridiansNb - 1)
-						B = i + 1;
-					else
-						B = 0;
-				} else {
-					B = i;
-					C = meridiansNb * 2 + 1;
-					if (i != meridiansNb*2 - 1)
-						A = i + 1;
-					else
-						A = meridiansNb;
+					B = 
 				}
-				triangles [meridiansNb * 6 + i * 3] = B;
-				triangles [meridiansNb * 6 + i * 3 + 1] = A;
-				triangles [meridiansNb * 6 + i * 3 + 2] = C;
+
 			}
 
 			Mesh msh = new Mesh ();
